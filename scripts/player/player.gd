@@ -7,6 +7,11 @@ var walking = false
 @onready var animation_player: AnimationPlayer = $Model/player/AnimationPlayer
 @onready var model: Node3D = $Model
 
+func _ready():
+	# Set a blend time on the animations so that they are a bit smoother when transitioning.
+	animation_player.set_blend_time("idle", "walk", 0.1)
+	animation_player.set_blend_time("walk", "idle", 0.2)
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -24,6 +29,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		
+		# Set the rotation of the model to look at the direction of the input. We also need to add 
+		# the position so that the rotation doesn't get wonky.
 		model.look_at(direction + position)
 		
 		# Set the player to walking to play animations

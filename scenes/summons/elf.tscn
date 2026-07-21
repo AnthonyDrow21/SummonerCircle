@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c1y7q7enuval6"]
+
+[ext_resource type="Script" uid="uid://ykrklqgstfj5" path="res://scenes/summons/elf.gd" id="1_2h18i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_otjlk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4gaj"]
+albedo_color = Color(0.20546466, 0.86479086, 0.49779886, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ra2i3"]
+material = SubResource("StandardMaterial3D_g4gaj")
+
+[node name="Elf" type="CharacterBody3D" unique_id=1942693401 groups=["Summon"]]
+script = ExtResource("1_2h18i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1982194870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_otjlk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=747231882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_ra2i3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1584515468]
